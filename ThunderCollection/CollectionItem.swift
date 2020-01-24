@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 public typealias SelectionHandler = (_ item: CollectionItemDisplayable, _ selected: Bool, _ indexPath: IndexPath, _ collectionView: UICollectionView?) -> (Void)
 
 public protocol CollectionItemDisplayable {
@@ -58,6 +57,32 @@ public protocol CollectionItemDisplayable {
 	///   - tableView: The table view which the row will be displayed in
 	/// - Returns: The height (or nil, to have this ignored) the row should be displayed at
 	func size(constrainedTo size: CGSize, in collectionView: UICollectionView) -> CGSize?
+    
+    //MARK: Context Menu
+    
+    /// A function which can be used to provide a `UIContextMenuConfiguration` for the row, at a given point
+    /// - Parameters:
+    ///   - point: The point within the table view that the context menu should be shown for
+    ///   - indexPath: The index path the context menu will be displayed for
+    ///   - collectionView: The collection view that the context menu will be shown within
+    @available(iOS 13.0, *)
+    func contextMenuConfiguration(at point: CGPoint, for indexPath: IndexPath, in collectionView: UICollectionView) -> UIContextMenuConfiguration?
+    
+    /// A function which can be used to provide the view for dismissing a given context menu
+    /// - Parameters:
+    ///   - configuration: The configuration that the dismissing menu is for
+    ///   - indexPath: The index path the context menu is being displayed for
+    ///   - collectionView: The collection view that the context menu will be shown within
+    @available(iOS 13.0, *)
+    func previewForDismissingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in collectionView: UICollectionView) -> UITargetedPreview?
+    
+    /// A function which can be used to provide the view for highlighting a given context menu
+    /// - Parameters:
+    ///   - configuration: The configuration that the highlighting menu is for
+    ///   - indexPath: The index path the context menu is being displayed for
+    ///   - collectionView: The collection view that the context menu will be shown within
+    @available(iOS 13.0, *)
+    func previewForHighlightingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in collectionView: UICollectionView) -> UITargetedPreview?
 }
 
 
@@ -91,6 +116,19 @@ extension CollectionItemDisplayable {
 	public func size(constrainedTo size: CGSize, in collectionView: UICollectionView) -> CGSize? {
 		return nil
 	}
+    
+    @available(iOS 13.0, *)
+    func contextMenuConfiguration(at point: CGPoint, for indexPath: IndexPath, in collectionView: UICollectionView) -> UIContextMenuConfiguration? { return nil }
+
+    @available(iOS 13.0, *)
+    func previewForDismissingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in collectionView: UICollectionView) -> UITargetedPreview? {
+        return nil
+    }
+    
+    @available(iOS 13.0, *)
+    func previewForHighlightingContextMenu(with configuration: UIContextMenuConfiguration, at indexPath: IndexPath, in collectionView: UICollectionView) -> UITargetedPreview? {
+        return nil
+    }
 }
 
 

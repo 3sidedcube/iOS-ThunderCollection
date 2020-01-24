@@ -410,6 +410,46 @@ open class CollectionViewController: UICollectionViewController, UICollectionVie
 			return size;
 		}
 	}
+    
+    //MARK: - Context Menus
+    
+    private var _contextMenuIndexPathMap: [IndexPath : Any] = [:]
+    
+    // We can't @available a stored property due to the compiler not liking it, so we have to have this computed property unfortunately.
+    @available(iOS 13.0, *)
+    private var contextMenuIndexPathMap: [IndexPath : UIContextMenuConfiguration] {
+        return _contextMenuIndexPathMap.compactMapValues { (value) -> UIContextMenuConfiguration? in
+            return value as? UIContextMenuConfiguration
+        }
+    }
+    
+    @available(iOS 13.0, *)
+    open override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let (section, row) = self[indexPath] else { return nil }
+        let configuration = row.contextMenuConfiguration(at: point, for: indexPath, in: collectionView) ?? section.sectionContextMenuConfiguration(at: point, for: indexPath, in: collectionView)
+        _contextMenuIndexPathMap[indexPath] = configuration
+        return configuration
+    }
+    
+    @available(iOS 13.0, *)
+    open override func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let indexPath = contextMenuIndexPathMap.first(where: { (arg) -> Bool in
+            let (_, value) = arg
+            return value == configuration
+        })?.key else { return nil }
+        guard let (section, row) = self[indexPath] else { return nil }
+        return row.previewForDismissingContextMenu(with: configuration, at: indexPath, in: collectionView) ?? section.sectionPreviewForDismissingContextMenu(with: configuration, at: indexPath, in: collectionView)
+    }
+    
+    @available(iOS 13.0, *)
+    open override func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let indexPath = contextMenuIndexPathMap.first(where: { (arg) -> Bool in
+            let (_, value) = arg
+            return value == configuration
+        })?.key else { return nil }
+        guard let (section, row) = self[indexPath] else { return nil }
+        return row.previewForHighlightingContextMenu(with: configuration, at: indexPath, in: collectionView) ?? section.sectionPreviewForHighlightingContextMenu(with: configuration, at: indexPath, in: collectionView)
+    }
 }
 
 public extension CollectionViewController {

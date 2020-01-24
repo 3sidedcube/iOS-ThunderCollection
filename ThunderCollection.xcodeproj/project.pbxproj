@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1213ACF23DB48FE009F22C7 /* CollectionViewController+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1213ACE23DB48FE009F22C7 /* CollectionViewController+Collection.swift */; };
 		B124DE261F2F3E1D00A7AD68 /* ThunderCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = B124DE241F2F3E1D00A7AD68 /* ThunderCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B124DE351F2F3EB900A7AD68 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B124DE321F2F3EB900A7AD68 /* CollectionViewController.swift */; };
 		B124DE361F2F3EB900A7AD68 /* CollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B124DE331F2F3EB900A7AD68 /* CollectionSection.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B1213ACE23DB48FE009F22C7 /* CollectionViewController+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewController+Collection.swift"; sourceTree = "<group>"; };
 		B124DE211F2F3E1D00A7AD68 /* ThunderCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ThunderCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B124DE241F2F3E1D00A7AD68 /* ThunderCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThunderCollection.h; sourceTree = "<group>"; };
 		B124DE251F2F3E1D00A7AD68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				B124DE341F2F3EB900A7AD68 /* CollectionItem.swift */,
 				B124DE331F2F3EB900A7AD68 /* CollectionSection.swift */,
 				B124DE321F2F3EB900A7AD68 /* CollectionViewController.swift */,
+				B1213ACE23DB48FE009F22C7 /* CollectionViewController+Collection.swift */,
 				B124DE241F2F3E1D00A7AD68 /* ThunderCollection.h */,
 				B124DE251F2F3E1D00A7AD68 /* Info.plist */,
 			);
@@ -217,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B124DE351F2F3EB900A7AD68 /* CollectionViewController.swift in Sources */,
+				B1213ACF23DB48FE009F22C7 /* CollectionViewController+Collection.swift in Sources */,
 				B124DE361F2F3EB900A7AD68 /* CollectionSection.swift in Sources */,
 				B124DE371F2F3EB900A7AD68 /* CollectionItem.swift in Sources */,
 				B176490D1F6186A20093C848 /* LeftAlignedLayout.swift in Sources */,
